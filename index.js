@@ -55,3 +55,53 @@ module.exports = {
   displayUserInput,
   setupEventListeners,
 }
+// ELEMENTS
+const button = document.getElementById("colorBtn");
+const keyDisplay = document.getElementById("keyDisplay");
+const textInput = document.getElementById("textInput");
+const textDisplay = document.getElementById("textDisplay");
+
+// ------------------------------
+// 1. CHANGE BACKGROUND COLOR
+// ------------------------------
+function changeBackgroundColor() {
+    document.body.style.backgroundColor = "lightblue";
+}
+
+// RESET BACKGROUND COLOR (double click)
+function resetBackgroundColor() {
+    document.body.style.backgroundColor = "white";
+}
+
+// EVENT LISTENERS FOR BUTTON
+button.addEventListener("click", changeBackgroundColor);
+button.addEventListener("dblclick", resetBackgroundColor);
+
+// ------------------------------
+// 2. KEYBOARD INPUT
+// ------------------------------
+function displayKeyPress(event) {
+    keyDisplay.textContent = `You pressed: ${event.key}`;
+}
+
+document.addEventListener("keydown", displayKeyPress);
+
+// ------------------------------
+// 3. TEXT INPUT (REAL-TIME)
+// ------------------------------
+function displayUserInput() {
+    textDisplay.textContent = textInput.value;
+}
+
+textInput.addEventListener("input", displayUserInput);
+
+// ------------------------------
+// 4. COMBINED INTERACTIONS
+// ------------------------------
+
+// Example: extra interaction when typing "hello"
+textInput.addEventListener("input", () => {
+    if (textInput.value.toLowerCase() === "hello") {
+        document.body.style.backgroundColor = "lightgreen";
+    }
+});
